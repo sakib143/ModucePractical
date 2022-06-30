@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="model"
+            type="com.example.interviewexercise.data.Movie" />
+        <variable
+            name="listner"
+            type="com.example.interviewexercise.listner.MoviesListner" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_10sdp"
+        android:onClick="@{()-> listner.clickItems(model)}">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_180sdp"
+            loadImageUrl="@{model.posterPath}"
+            android:scaleType="centerCrop"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Title"
+                android:text="@{model.title}"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="@dimen/_15ssp"
+                android:textStyle="bold"
+                android:layout_toStartOf="@+id/ivStart"
+                android:textColor="@color/black"
+                android:paddingRight="@dimen/_10sdp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_star"
+                android:layout_alignParentEnd="true"
+                android:tint="@color/ratingColor"
+                setStartVisiblity="@{model.voteAverage}"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Overview"
+            android:text="@{model.overview}"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textSize="@dimen/_13ssp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    
+</layout>
